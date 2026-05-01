@@ -6,7 +6,7 @@
 	import Breadcrumb from '$lib/common/shared/Breadcrumb.svelte';
 	import EmbeddingPage from '$lib/common/embedding/EmbeddingPage.svelte';
 
-    /** @type {string?} */
+    /** @type {string | undefined} */
     let label = '';
 </script>
 

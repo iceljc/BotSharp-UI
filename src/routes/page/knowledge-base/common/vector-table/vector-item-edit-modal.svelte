@@ -2,7 +2,7 @@
     import { onMount, tick } from "svelte";
     import { fade } from 'svelte/transition';
     import {
-        KnowledgeCollectionType,
+        KnowledgeBaseType,
         KnowledgePayloadName,
         VectorPayloadDataType
     } from "$lib/helpers/enums";
@@ -16,7 +16,7 @@
         /** @type {string} */
         collection = '',
         /** @type {string} */
-        collectionType = '',
+        knowledgeType = '',
         /** @type {boolean} */
         open = false,
         /** @type {string} */
@@ -47,8 +47,8 @@
         value: v.name
     }));
 
-    let isQuestionAnswerCollection = $derived(collectionType === KnowledgeCollectionType.QuestionAnswer);
-    let isDocumentCollection = $derived(collectionType === KnowledgeCollectionType.Document);
+    let isQuestionAnswerCollection = $derived(knowledgeType === KnowledgeBaseType.QuestionAnswer);
+    let isDocumentCollection = $derived(knowledgeType === KnowledgeBaseType.Document);
 
     /** @type {{ uuid: string, key: string, value: any }[]} */
     let innerPayloads = $state([]);
