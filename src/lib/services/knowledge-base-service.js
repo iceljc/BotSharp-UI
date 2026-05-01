@@ -324,18 +324,6 @@ export async function deleteKnowledgeCollection(collection, knowledgeType, dbPro
 
 
 /**
- * @param {string} text
- * @param {string } method
- * @returns {Promise<any>}
- */
-export async function searchGraphKnowledge(text, method = "local") {
-    const url = endpoints.knowledgeDataSearchUrl;
-    const response = await axios.post(url, { query: text, method: method });
-    return response.data;
-}
-
-
-/**
  * @param {string} collection
  * @param {import('$knowledgeTypes').VectorCollectionIndexOptions[]} options
  * @param {string} knowledgeType

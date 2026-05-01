@@ -112,8 +112,6 @@ export const endpoints = {
     
     knowledgeIndexesCreateUrl: `${host}/knowledge/collection/{collection}/indexes`,
     knowledgeIndexesDeleteUrl: `${host}/knowledge/collection/{collection}/indexes`,
-    
-    // graphKnowledgeSearchUrl: `${host}/knowledge/graph/search`,
 
     knowledgeFileUploadUrl: `${host}/knowledge/collection/{collection}/file/upload`,
     knowledgeFileDeleteUrl: `${host}/knowledge/collection/{collection}/file/{fileId}`,
