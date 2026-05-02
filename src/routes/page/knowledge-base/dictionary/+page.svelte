@@ -347,7 +347,6 @@
                                             <TableItem
 												item={item.data}
                                                 columns={columns}
-                                                detailKey={'data'}
 												open={idx === 0}
 											/>
 										{/each}
