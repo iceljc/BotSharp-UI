@@ -8,7 +8,7 @@
  */
 
 /**
- * @typedef {Object} SearchKnowledgeRequest
+ * @typedef {Object} KnowledgeQueryRequest
  * @property {string} text - The text.
  * @property {string[]} [fields] - Data fields.
  * @property {number} [limit] - Data limit.
@@ -80,7 +80,7 @@
  */
 
 /**
- * @typedef {Object} KnowledgeSearchViewModel
+ * @typedef {Object} KnowledgeQueryViewModel
  * @property {string} id - The knowledge data id.
  * @property {any} payload - The knowledge payload.
  * @property {any} data - The knowledge payload.
@@ -92,7 +92,7 @@
 /**
  * @typedef {Object} KnowledgeSearchPageResult
  * @property {number} count - The total data count.
- * @property {KnowledgeSearchViewModel[]} items - The data items.
+ * @property {KnowledgeQueryViewModel[]} items - The data items.
  * @property {string} [next_id] - The next id.
  */
 

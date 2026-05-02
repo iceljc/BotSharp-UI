@@ -191,7 +191,7 @@ function skipLoader(config) {
         new RegExp('http(s*)://(.*?)/conversation/(.*?)/(.*?)', 'g'),
         new RegExp('http(s*)://(.*?)/agent', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/data/page', 'g'),
-        new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/search', 'g'),
+        new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/query', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/file/page', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/file/upload', 'g'),
@@ -277,7 +277,7 @@ function skipGlobalError(config) {
     const postRegexes = [
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/data', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/data/page', 'g'),
-        new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/search', 'g'),
+        new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/query', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection', 'g'),
         new RegExp('http(s*)://(.*?)/knowledge/collection/(.*?)/file/page', 'g'),

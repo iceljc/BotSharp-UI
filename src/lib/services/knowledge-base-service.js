@@ -61,13 +61,13 @@ export async function getKnowledgeCollectionDetails(collection, knowledgeType, d
 
 /**
  * @param {string} collection
- * @param {import('$knowledgeTypes').SearchKnowledgeRequest} request
+ * @param {import('$knowledgeTypes').KnowledgeQueryRequest} request
  * @param {string} knowledgeType
  * @param {string?} dbProvider
- * @returns {Promise<import('$knowledgeTypes').KnowledgeSearchViewModel[]>}
+ * @returns {Promise<import('$knowledgeTypes').KnowledgeQueryViewModel[]>}
  */
-export async function searchKnowledge(collection, request, knowledgeType, dbProvider = null) {
-    const url = replaceUrl(endpoints.knowledgeDataSearchUrl, {
+export async function executeKnowledgeQuery(collection, request, knowledgeType, dbProvider = null) {
+    const url = replaceUrl(endpoints.knowledgeDataQueryUrl, {
         collection: collection
     });
 

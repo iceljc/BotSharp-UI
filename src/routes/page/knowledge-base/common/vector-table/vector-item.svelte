@@ -5,7 +5,7 @@
 	import { KnowledgeBaseType, KnowledgePayloadName } from "$lib/helpers/enums";
 
     let {
-        /** @type {import('$knowledgeTypes').KnowledgeSearchViewModel} */
+        /** @type {import('$knowledgeTypes').KnowledgeQueryViewModel} */
         item,
         /** @type {string} */
         collection,

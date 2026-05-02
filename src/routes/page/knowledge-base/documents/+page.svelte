@@ -8,7 +8,7 @@
     import {
         getKnowledgeCollections,
         getKnowledgePageList,
-        searchKnowledge,
+        executeKnowledgeQuery,
 		createKnowledgeData,
 		updateKnowledgeData,
 		deleteKnowledgeCollection,
@@ -59,7 +59,7 @@
     /** @type {string} */
     let selectedCollection = $state('');
 
-	/** @type {import('$knowledgeTypes').KnowledgeSearchViewModel[]} */
+	/** @type {import('$knowledgeTypes').KnowledgeQueryViewModel[]} */
 	let items = $state([]);
 
 	/** @type {import('$commonTypes').LabelValuePair[]} */
@@ -74,7 +74,7 @@
 	/** @type {string} */
 	let editCollection = $state('');
 
-	/** @type {import('$knowledgeTypes').KnowledgeSearchViewModel | null} */
+	/** @type {import('$knowledgeTypes').KnowledgeQueryViewModel | null} */
 	let editItem = $state(null);
 
 	/** @type {string} */
@@ -212,7 +212,7 @@
             	elapsedTime = `${(gap / 1000).toFixed(3)}s`;
 			});
 		} else {
-			/** @type {import('$knowledgeTypes').SearchKnowledgeRequest} */
+			/** @type {import('$knowledgeTypes').KnowledgeQueryRequest} */
 			const params = {
 				text: util.trim(text),
 				limit: searchLimit,
@@ -222,7 +222,7 @@
 				searchParam: { exact_search: isExactSearch }
 			};
 
-			searchKnowledge(selectedCollection, params, knowledgeType).then(res => {
+			executeKnowledgeQuery(selectedCollection, params, knowledgeType).then(res => {
 				items = res || [];
 				totalDataCount = items.length;
 				isFromSearch = true;

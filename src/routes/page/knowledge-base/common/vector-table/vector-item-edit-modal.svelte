@@ -11,7 +11,7 @@
 	import Select from "$lib/common/dropdowns/Select.svelte";
 
     let {
-        /** @type {import('$knowledgeTypes').KnowledgeSearchViewModel | null} */
+        /** @type {import('$knowledgeTypes').KnowledgeQueryViewModel | null} */
         item = null,
         /** @type {string} */
         collection = '',

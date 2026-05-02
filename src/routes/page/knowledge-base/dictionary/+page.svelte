@@ -6,7 +6,7 @@
     import {
 		getEntityAnalyzers,
 		getEntityDataLoaders,
-		searchKnowledge
+		executeKnowledgeQuery
     } from '$lib/services/knowledge-base-service';
 	import Breadcrumb from '$lib/common/shared/Breadcrumb.svelte';
     import HeadTitle from '$lib/common/shared/HeadTitle.svelte';
@@ -41,7 +41,7 @@
     /** @type {string[]} */
     let selectedDataLoaders = $state([]);
 
-	/** @type {import('$knowledgeTypes').KnowledgeSearchViewModel[]} */
+	/** @type {import('$knowledgeTypes').KnowledgeQueryViewModel[]} */
 	let items = $state([]);
 
 	/** @type {import('$commonTypes').LabelValuePair[]} */
@@ -157,13 +157,13 @@
 
     function getAnalysisResult() {
         return new Promise((resolve, reject) => {
-			/** @type {import('$knowledgeTypes').SearchKnowledgeRequest} */
+			/** @type {import('$knowledgeTypes').KnowledgeQueryRequest} */
             const request = {
                 text: util.trim(text),
                 dataProviders: selectedDataLoaders?.length > 0 ? selectedDataLoaders : null
             };
 
-            searchKnowledge(knowledgeType, request, knowledgeType, selectedAnalyzer).then(res => {
+            executeKnowledgeQuery(knowledgeType, request, knowledgeType, selectedAnalyzer).then(res => {
                 items = res || [];
                 totalDataCount = items.length;
                 resolve(res);

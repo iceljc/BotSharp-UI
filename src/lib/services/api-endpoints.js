@@ -103,7 +103,7 @@ export const endpoints = {
     knowledgeCollectionCreateUrl: `${host}/knowledge/collection`,
     knowledgeCollectionDeleteUrl: `${host}/knowledge/collection/{collection}`,
 
-    knowledgeDataSearchUrl: `${host}/knowledge/collection/{collection}/search`,
+    knowledgeDataQueryUrl: `${host}/knowledge/collection/{collection}/query`,
     knowledgeDataPageListUrl: `${host}/knowledge/collection/{collection}/data/page`,
     knowledgeDataCreateUrl: `${host}/knowledge/collection/{collection}/data`,
     knowledgeDataUpdateUrl: `${host}/knowledge/collection/{collection}/data`,
