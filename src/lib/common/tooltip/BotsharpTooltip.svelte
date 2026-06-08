@@ -197,8 +197,6 @@
         class={classes}
         {id}
         role="tooltip"
-        data-bs-theme={theme}
-        data-bs-delay={delay}
         x-placement={popperPlacement}
     >
         <div class="tooltip-arrow absolute block" data-popper-arrow></div>

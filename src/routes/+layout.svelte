@@ -8,13 +8,19 @@
 	import '@fontsource/libre-baskerville/400.css';
 	import '@fontsource/source-code-pro/400.css';
 	import '@fontsource/rethink-sans/400.css';
-
 	import '../app.css';
 	import '$lib/scss/icons.scss';
 	import '$lib/styles/app.scss';
 	import { addMessages, init, getLocaleFromNavigator } from 'svelte-i18n';
-	import { PUBLIC_PRIMARY_COLOR, PUBLIC_SECONDARY_COLOR } from '$env/static/public';
+	import { browser } from '$app/environment';
+	import { PUBLIC_PRIMARY_COLOR, PUBLIC_SECONDARY_COLOR, PUBLIC_THEME_MODE } from '$env/static/public';
 	import en from '$lib/langs/en.json';
+
+	// Default project theme mode from the env (falls back to light for any unset/unknown value).
+	const themeMode = (PUBLIC_THEME_MODE || '').toLowerCase() === 'dark' ? 'dark' : 'light';
+	if (browser) {
+		document.documentElement.classList.toggle('dark', themeMode === 'dark');
+	}
 
 	addMessages('en', en);
 

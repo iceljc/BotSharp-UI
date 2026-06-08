@@ -2,6 +2,10 @@
 	import 'overlayscrollbars/overlayscrollbars.css';
 	import { OverlayScrollbars } from 'overlayscrollbars';
 	import { onMount } from 'svelte';
+	import { PUBLIC_THEME_MODE } from '$env/static/public';
+
+	// Initial theme mode from the project env (falls back to light for any unset/unknown value).
+	const envThemeMode = (PUBLIC_THEME_MODE || '').toLowerCase() === 'dark' ? 'dark' : 'light';
 
 	/**
 	 * @type {{
@@ -17,7 +21,7 @@
 		sidebarColor = 'dark',
 		topbarColor = 'light',
 		layoutWidth = 'fluid',
-		layoutMode = 'light',
+		layoutMode = envThemeMode,
 		sidebarSize = 'icon',
 		closebar
 	} = $props();
@@ -78,11 +82,11 @@
 	}
 
 	/**
-	 * @param {string} attribute
-	 * @param {string} value
+	 * Toggle class-based dark mode on <html> (Tailwind convention).
+	 * @param {string} value 'light' | 'dark'
 	 */
-	function changeLayoutMode(attribute, value) {
-		if (document.documentElement) document.documentElement.setAttribute(attribute, value);
+	function changeLayoutMode(value) {
+		if (document.documentElement) document.documentElement.classList.toggle('dark', value === 'dark');
 	}
 
 	/**
@@ -134,7 +138,7 @@
 		changeBodyAttribute('data-topbar', topbarColor);
 		changeBodyAttribute('data-sidebar-size', sidebarSize);
 		changeLayoutwidth('data-layout-size', layoutWidth);
-		changeLayoutMode('data-bs-theme', layoutMode);
+		changeLayoutMode(layoutMode);
 		setTimeout(() => {
 			if (document.body.getAttribute('data-layout') == 'horizontal') {
 				// @ts-ignore
@@ -221,12 +225,12 @@
 			<div class="mb-2">
 				<img src="images/layouts/layout-1.jpg" class="block w-full rounded border border-gray-200 p-1 dark:border-gray-700" alt="layout images" />
 			</div>
-			{@render radioOption('layout-mode', 'layout-mode-light', 'Light', layoutMode == 'light', () => changeLayoutMode('data-bs-theme', 'light'))}
+			{@render radioOption('layout-mode', 'layout-mode-light', 'Light', layoutMode == 'light', () => changeLayoutMode('light'))}
 
 			<div class="mb-2 mt-3">
 				<img src="images/layouts/layout-2.jpg" class="block w-full rounded border border-gray-200 p-1 dark:border-gray-700" alt="layout images" />
 			</div>
-			{@render radioOption('layout-mode', 'layout-mode-dark', 'Dark', layoutMode == 'dark', () => changeLayoutMode('data-bs-theme', 'dark'))}
+			{@render radioOption('layout-mode', 'layout-mode-dark', 'Dark', layoutMode == 'dark', () => changeLayoutMode('dark'))}
 		</div>
 	</div>
 </div>
