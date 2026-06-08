@@ -83,18 +83,27 @@
 
 <Headtitle title="Login" />
 
-<div class="flex min-h-screen items-center overflow-hidden bg-white dark:bg-gray-900">
-  <div class="mx-auto w-full max-w-7xl px-4">
+<div class="login-hero relative flex min-h-screen items-center overflow-hidden dark:bg-gray-900">
+  <!-- Decorative ambient background (matches home page) -->
+  <div class="login-bg" aria-hidden="true">
+    <span class="blob blob--primary"></span>
+    <span class="blob blob--info"></span>
+    <span class="blob blob--success"></span>
+    <span class="grid-overlay"></span>
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-4">
     <div class="flex min-h-screen items-center justify-center">
       <div class="w-full md:w-5/6 lg:w-2/3 xl:w-1/2">
         <div class="animate-slide-in-up py-8">
 
           <!-- Card -->
-          <div class="overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10 dark:bg-gray-800 dark:ring-white/10">
+          <div class="login-card overflow-hidden rounded-3xl bg-white/90 ring-1 ring-black/5 backdrop-blur-xl dark:bg-gray-800/90 dark:ring-white/10">
 
             <!-- Gradient header -->
-            <div class="flex flex-col items-center justify-between gap-6 bg-linear-to-br from-primary to-primary-hover px-6 py-8 text-center text-white md:flex-row md:gap-0 md:px-8 md:py-10 md:text-left">
-              <div class="flex-1">
+            <div class="login-header relative flex flex-col items-center justify-between gap-6 overflow-hidden bg-linear-to-br from-primary to-primary-hover px-6 py-8 text-center text-white md:flex-row md:gap-0 md:px-8 md:py-10 md:text-left">
+              <span class="header-shine" aria-hidden="true"></span>
+              <div class="relative z-10 flex-1">
                 <div class="mb-6 flex justify-center md:justify-start">
                   <a href="/">
                     <div class="flex h-20 w-20 items-center justify-center rounded-full border-2 border-white/30 bg-white shadow-md transition-transform hover:scale-105">
@@ -105,8 +114,8 @@
                 <h2 class="mb-1 text-3xl font-bold drop-shadow-sm">{$_('Welcome Back!')}</h2>
                 <p class="text-lg opacity-90">Sign in to continue to {PUBLIC_BRAND_NAME}</p>
               </div>
-              <div class="md:ml-8 md:shrink-0">
-                <img src={PUBLIC_LOGIN_IMAGE} alt="Login Illustration" class="max-w-[120px] drop-shadow-lg md:max-w-[150px]" />
+              <div class="relative z-10 md:ml-8 md:shrink-0">
+                <img src={PUBLIC_LOGIN_IMAGE} alt="Login Illustration" class="login-illustration max-w-[120px] drop-shadow-lg md:max-w-[150px]" />
               </div>
             </div>
 
@@ -187,7 +196,7 @@
                 <div class="mb-6 flex justify-center">
                   <button
                     type="submit"
-                    class="login-btn cursor-pointer h-14 min-w-[200px] rounded-xl bg-linear-to-br from-primary to-primary-hover px-8 text-lg font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 disabled:translate-y-0 disabled:opacity-70 disabled:shadow-md"
+                    class="login-btn cursor-pointer h-14 min-w-[200px] rounded-xl px-8 text-lg font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0 disabled:translate-y-0 disabled:opacity-70"
                     disabled={isSubmitting}
                   >
                     {#if isSubmitting}
@@ -257,4 +266,146 @@
   </div>
 </div>
 
+<style>
+    /* ---- Ambient background (mirrors the home page hero) ---- */
+    .login-hero {
+        background:
+            radial-gradient(120% 120% at 50% 0%, #ffffff 0%, #f7f5fc 45%, #f1eefb 100%);
+    }
+
+    :global(.dark) .login-hero {
+        background:
+            radial-gradient(120% 120% at 50% 0%, #1f2430 0%, #171a23 55%, #11131a 100%);
+    }
+
+    .login-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .blob {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(80px);
+        opacity: 0.4;
+        will-change: transform;
+    }
+
+    .blob--primary {
+        width: 36rem;
+        height: 36rem;
+        top: -12rem;
+        left: -10rem;
+        background: var(--color-primary);
+        animation: drift-a 18s ease-in-out infinite;
+    }
+
+    .blob--info {
+        width: 30rem;
+        height: 30rem;
+        top: -6rem;
+        right: -8rem;
+        background: var(--color-info);
+        opacity: 0.3;
+        animation: drift-b 22s ease-in-out infinite;
+    }
+
+    .blob--success {
+        width: 26rem;
+        height: 26rem;
+        bottom: -10rem;
+        left: 35%;
+        background: var(--color-success);
+        opacity: 0.24;
+        animation: drift-a 26s ease-in-out infinite reverse;
+    }
+
+    .grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(111, 66, 193, 0.07) 1px, transparent 1px);
+        background-size: 26px 26px;
+        mask-image: radial-gradient(75% 60% at 50% 45%, #000 0%, transparent 75%);
+        -webkit-mask-image: radial-gradient(75% 60% at 50% 45%, #000 0%, transparent 75%);
+    }
+
+    /* ---- Card ---- */
+    .login-card {
+        box-shadow:
+            0 30px 60px -20px rgba(52, 58, 64, 0.28),
+            0 12px 24px -12px rgba(111, 66, 193, 0.25);
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .login-card:hover {
+        transform: translateY(-3px);
+        box-shadow:
+            0 38px 72px -20px rgba(52, 58, 64, 0.32),
+            0 16px 30px -12px rgba(111, 66, 193, 0.32);
+    }
+
+    /* ---- Header sheen + floating illustration ---- */
+    .header-shine {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+            radial-gradient(120% 100% at 100% 0%, rgba(255, 255, 255, 0.28), transparent 55%),
+            radial-gradient(80% 120% at 0% 100%, rgba(0, 0, 0, 0.12), transparent 60%);
+    }
+
+    .login-illustration {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* ---- Submit button (matches home CTA glow) ---- */
+    .login-btn {
+        background: linear-gradient(120deg, var(--color-primary), #8a5cd6);
+        box-shadow:
+            0 12px 26px -6px rgba(111, 66, 193, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .login-btn:hover:not(:disabled) {
+        filter: brightness(1.05);
+        box-shadow:
+            0 18px 34px -6px rgba(111, 66, 193, 0.65),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .login-btn:disabled {
+        box-shadow: 0 8px 18px -8px rgba(111, 66, 193, 0.4);
+    }
+
+    /* ---- Keyframes ---- */
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes drift-a {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(40px, 30px) scale(1.08); }
+    }
+
+    @keyframes drift-b {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(-35px, 25px) scale(1.1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .blob,
+        .login-illustration,
+        .login-card {
+            animation: none !important;
+        }
+        .login-card,
+        .login-btn {
+            transition: none;
+        }
+    }
+</style>
 
